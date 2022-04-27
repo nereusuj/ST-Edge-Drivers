@@ -12,12 +12,24 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-local capabilities = require "st.capabilities"
-local ZigbeeDriver = require "st.zigbee"
-local defaults = require "st.zigbee.defaults"
+local battery_defaults = require "st.zigbee.defaults.battery_defaults"
 local configurationMap = require "configurations"
 
+local FRIENT_TEMP_HUMUDITY_SENSOR_FINGERPRINTS = {
+  { mfr = "frient A/S", model = "HMSZB-110" },
+}
+
+local function can_handle_frient_sensor(opts, driver, device)
+  for _, fingerprint in ipairs(FRIENT_TEMP_HUMUDITY_SENSOR_FINGERPRINTS) do
+    if device:get_manufacturer() == fingerprint.mfr and device:get_model() == fingerprint.model then
+      return true
+    end
+  end
+  return false
+end
+
 local function device_init(driver, device)
+  battery_defaults.build_linear_voltage_init(2.3,3.0)(driver, device)
   local configuration = configurationMap.get_device_configuration(device)
   if configuration ~= nil then
     for _, attribute in ipairs(configuration) do
@@ -27,24 +39,12 @@ local function device_init(driver, device)
   end
 end
 
-local zigbee_humidity_driver = {
-  supported_capabilities = {
-    capabilities.battery,
-    capabilities.relativeHumidityMeasurement,
-    capabilities.temperatureMeasurement,
-  },
+local frient_sensor = {
+  NAME = "Frient Humidity Sensor",
   lifecycle_handlers = {
     init = device_init
   },
-  sub_drivers = {
-    require("plant-link"),
-    require("plaid-systems"),
-    require("centralite-sensor"),
-    require("heiman-sensor"),
-    require("frient-sensor")
-  }
+  can_handle = can_handle_frient_sensor
 }
 
-defaults.register_for_default_handlers(zigbee_humidity_driver, zigbee_humidity_driver.supported_capabilities)
-local driver = ZigbeeDriver("zigbee-humidity-sensor", zigbee_humidity_driver)
-driver:run()
+return frient_sensor
