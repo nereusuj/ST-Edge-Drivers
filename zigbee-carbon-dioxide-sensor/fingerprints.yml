@@ -1,0 +1,6 @@
+zigbeeManufacturer:
+  - id: "_TZE200_ogkdpgy2/TS0601"
+    deviceLabel: Tuya Zigbee CO2 Box
+    manufacturer: _TZE200_ogkdpgy2
+    model: TS0601
+    deviceProfileName: carbonDioxide

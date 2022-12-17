@@ -1,0 +1,29 @@
+name: carbonDioxide
+components:
+- id: main
+  capabilities:
+  - id: carbonDioxideMeasurement
+    version: 1
+  - id: refresh
+    version: 1
+  categories:
+  - name: AirQualityDetector
+preferences:
+  - name: "timeIntervalToReport"
+    title: "Reports interval (Seconds)"
+    description: "This setting adjusts the number of seconds after which values ​​are not reported after they were previously reported."
+    required: false
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 3600
+      default: 60
+  - name: "minimumReportChanges"
+    title: "Minimum changes to report"
+    description: "This setting adjusts for minimal non-reporting changes in previously reported values."
+    required: false
+    preferenceType: integer
+    definition:
+      minimum: 0
+      maximum: 4000
+      default: 20

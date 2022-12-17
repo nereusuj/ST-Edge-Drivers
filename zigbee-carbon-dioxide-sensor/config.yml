@@ -1,0 +1,4 @@
+name: 'Zigbee Carbon Dioxide Sensor by nereusuj'
+packageKey: 'zigbee-carborn-dioxide-sensor'
+permissions:
+  zigbee: {}
