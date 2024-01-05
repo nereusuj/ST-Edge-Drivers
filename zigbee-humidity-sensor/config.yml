@@ -1,6 +1,6 @@
-name: 'Zigbee Humidity Sensor'
-packageKey: 'zigbee-humidity-sensor'
+name: 'Zigbee Humidity Sensor (nereusuj)'
+packageKey: 'zigbee-humidity-sensor-nereusuj'
 permissions:
   zigbee: {}
-description: "SmartThings driver for Zigbee humidity sensor devices"
-vendorSupportInformation: "https://support.smartthings.com"
+description: 'Zigbee Humidity Sensor Driver with dashboard patched by NereusUJ'
+vendorSupportInformation: "https://github.com/nereusuj/ST-Edge-Drivers"

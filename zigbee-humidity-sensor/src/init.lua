@@ -14,8 +14,12 @@
 
 local capabilities = require "st.capabilities"
 local ZigbeeDriver = require "st.zigbee"
+local clusters = require "st.zigbee.zcl.clusters"
+local temperatureCluster = clusters.TemperatureMeasurement
+local humidityCluster = clusters.RelativeHumidity
 local defaults = require "st.zigbee.defaults"
 local configurationMap = require "configurations"
+local signal = require "signal-metrics"
 
 local function device_init(driver, device)
   local configuration = configurationMap.get_device_configuration(device)
@@ -27,11 +31,24 @@ local function device_init(driver, device)
   end
 end
 
+local function concat_handlers(handler_1, handler_2)
+  local handlers = (type(handler_1) == "table") and handler_1 or { handler_1 }
+  table.insert(handlers, handler_2)
+  return handlers
+end
+
 local zigbee_humidity_driver = {
   supported_capabilities = {
     capabilities.battery,
     capabilities.relativeHumidityMeasurement,
     capabilities.temperatureMeasurement
+  },
+  zigbee_handlers = {
+    attr = {
+      [clusters.Basic.ID] = {
+        [clusters.Basic.attributes.ZCLVersion.ID] = signal.metrics
+      },
+    },
   },
   lifecycle_handlers = {
     init = device_init
@@ -47,5 +64,16 @@ local zigbee_humidity_driver = {
 }
 
 defaults.register_for_default_handlers(zigbee_humidity_driver, zigbee_humidity_driver.supported_capabilities)
+
+-- Add signal.metrics handler to the default handlers
+zigbee_humidity_driver.zigbee_handlers.attr[temperatureCluster.ID]
+  [temperatureCluster.attributes.MeasuredValue.ID] =
+  concat_handlers(zigbee_humidity_driver.zigbee_handlers.attr[temperatureCluster.ID]
+    [temperatureCluster.attributes.MeasuredValue.ID], signal.metrics)
+zigbee_humidity_driver.zigbee_handlers.attr[humidityCluster.ID]
+  [humidityCluster.attributes.MeasuredValue.ID] =
+  concat_handlers(zigbee_humidity_driver.zigbee_handlers.attr[humidityCluster.ID]
+    [humidityCluster.attributes.MeasuredValue.ID], signal.metrics)
+
 local driver = ZigbeeDriver("zigbee-humidity-sensor", zigbee_humidity_driver)
 driver:run()
