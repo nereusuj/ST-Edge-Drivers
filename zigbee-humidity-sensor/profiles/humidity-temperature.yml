@@ -6,14 +6,22 @@ components:
     version: 1
   - id: relativeHumidityMeasurement
     version: 1
+  - id: signalStrength
+    version: 1
   - id: firmwareUpdate
     version: 1
   - id: refresh
     version: 1
   categories:
-  - name: MultiFunctionalSensor
+  - name: Thermostat
 preferences:
   - preferenceId: tempOffset
     explicit: true
   - preferenceId: humidityOffset
     explicit: true
+metadata:
+  deviceType: Thermostat
+  ocfDeviceType: oic.d.thermostat
+  deviceTypeId: Thermostat
+  mnmn: fgM0
+  vid: 8e4e940f-8872-3edd-80d2-0bccfd704325

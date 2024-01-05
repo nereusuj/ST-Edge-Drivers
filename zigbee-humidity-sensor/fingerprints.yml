@@ -75,7 +75,7 @@ zigbeeManufacturer:
     deviceProfileName: humidity-temp-battery
 zigbeeGeneric:
   - id: "HumidityTempGeneric"
-    deviceLabel: Multipurpose Sensor
+    deviceLabel: Generic Temperature and Humidity Sensor
     deviceIdentifiers:
       - 0x0302
     clusters: 
@@ -83,6 +83,16 @@ zigbeeGeneric:
         - 0x0402 # Temperature Measurement Cluster
         - 0x0405 # Relative Humidity Measurement Cluster
     deviceProfileName: humidity-temperature
+  - id: "HumidityTempBatteryGeneric"
+    deviceLabel: Generic Temperature and Humidity Sensor
+    deviceIdentifiers:
+      - 0x0302
+    clusters:
+      server:
+        - 0x0001 # Power Configuration Cluster
+        - 0x0402 # Temperature Measurement Cluster
+        - 0x0405 # Relative Humidity Measurement Cluster
+    deviceProfileName: humidity-temp-battery
   - id: "PlantLinkClusterSpecific"
     deviceLabel: Plant Link Humidity Sensor
     zigbeeProfiles:

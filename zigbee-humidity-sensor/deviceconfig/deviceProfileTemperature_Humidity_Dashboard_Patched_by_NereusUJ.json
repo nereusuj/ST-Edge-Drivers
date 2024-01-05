@@ -1,0 +1,60 @@
+{
+    "id": "1a869dda-0d06-415f-a245-ce7d3fa4aa78",
+    "name": "Temperature Humidity Sensor",
+    "metadata": {
+        "vid": "8e4e940f-8872-3edd-80d2-0bccfd704325",
+        "deviceType": "Thermostat",
+        "mnmn": "fgM0",
+        "ocfDeviceType": "oic.d.thermostat",
+        "deviceTypeId": "Thermostat",
+        "ocfSpecVer": "core 1.1.0",
+        "mnid": "fgM0",
+        "mnId": "fgM0"
+    },
+    "migrationStatus": "NOT_MIGRATED",
+    "status": "DEVELOPMENT",
+    "preferences": [],
+    "components": [
+        {
+            "label": "main",
+            "id": "main",
+            "capabilities": [
+                {
+                    "id": "healthCheck",
+                    "version": 1,
+                    "ephemeral": false
+                },
+                {
+                    "id": "temperatureMeasurement",
+                    "version": 1,
+                    "ephemeral": false
+                },
+                {
+                    "id": "relativeHumidityMeasurement",
+                    "version": 1,
+                    "ephemeral": false
+                },
+                {
+                    "id": "battery",
+                    "version": 1,
+                    "ephemeral": false
+                },
+                {
+                    "id": "voltageMeasurement",
+                    "version": 1,
+                    "ephemeral": false
+                },
+                {
+                    "id": "signalStrength",
+                    "version": 1,
+                    "ephemeral": false
+                }
+            ],
+            "categories": []
+        }
+    ],
+    "owner": {
+        "ownerType": "USER",
+        "ownerId": "b4453a9e-7545-4273-83b5-322d218bdef1"
+    }
+}
