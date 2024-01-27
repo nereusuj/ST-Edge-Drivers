@@ -3,6 +3,7 @@ local data_types = require "st.zigbee.data_types"
 local zb_utils = require "st.zigbee.utils"
 local utils = require "st.utils"
 local log = require "log"
+local signal = require "signal-metrics"
 
 local PREV_REPORTED_TIME = "reportedTime"
 
@@ -69,7 +70,7 @@ local tuya_carbon_dioxide = {
     zigbee_handlers = {
         cluster = {
             [TUYA_CLUSTER_ID] = {
-                [TUYA_SET_DATA_RESPONSE] = tuya_data_report_handler
+                [TUYA_SET_DATA_RESPONSE] = {tuya_data_report_handler, signal.metrics_cluster}
             }
         }
     },

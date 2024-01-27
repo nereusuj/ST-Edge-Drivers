@@ -2,3 +2,5 @@ name: 'Zigbee Carbon Dioxide Sensor by nereusuj'
 packageKey: 'zigbee-carborn-dioxide-sensor'
 permissions:
   zigbee: {}
+description: 'Zigbee Carbon Dioxide Sensor by NereusUJ'
+vendorSupportInformation: "https://github.com/nereusuj/ST-Edge-Drivers"
