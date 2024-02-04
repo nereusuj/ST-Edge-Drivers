@@ -73,6 +73,11 @@ zigbeeManufacturer:
     manufacturer: eWeLink
     model: SNZB-02P
     deviceProfileName: humidity-temp-battery
+  - id: _TZ3000_ywagc4rj/TS0201
+    deviceLabel: MOES Temperature and Humidity Sensor
+    manufacturer: _TZ3000_ywagc4rj
+    model: TS0201
+    deviceProfileName: humidity-temp-battery
 zigbeeGeneric:
   - id: "HumidityTempGeneric"
     deviceLabel: Generic Temperature and Humidity Sensor

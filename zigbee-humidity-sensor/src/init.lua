@@ -59,7 +59,8 @@ local zigbee_humidity_driver = {
     require("plaid-systems"),
     require("centralite-sensor"),
     require("heiman-sensor"),
-    require("frient-sensor")
+    require("frient-sensor"),
+    require("moes")
   }
 }
 
