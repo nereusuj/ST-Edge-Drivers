@@ -9,6 +9,7 @@ local PREV_REPORTED_TIME = "reportedTime"
 
 local TUYA_CARBON_DIOXIDE_FINGERPRINTS = {
     { mfr = "_TZE200_ogkdpgy2", model = "TS0601" },
+    { mfr = "_TZE204_ogkdpgy2", model = "TS0601" },
 }
 
 local is_tuya_carbon_dioxide = function(opts, driver, device)
