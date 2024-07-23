@@ -4,3 +4,8 @@ zigbeeManufacturer:
     manufacturer: _TZE200_ogkdpgy2
     model: TS0601
     deviceProfileName: carbonDioxide
+  - id: "_TZE204_ogkdpgy2/TS0601"
+    deviceLabel: CO2 Sensor NDIR
+    manufacturer: _TZE204_ogkdpgy2
+    model: TS0601
+    deviceProfileName: carbonDioxide
