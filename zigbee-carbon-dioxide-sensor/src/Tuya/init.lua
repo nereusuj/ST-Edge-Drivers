@@ -58,9 +58,12 @@ local tuya_data_report_handler = function(driver, device, zb_rx)
             capabilities.carbonDioxideMeasurement.carbonDioxide.NAME,
             0
         )
-        local mininum_report_interval = device.preferences.timeIntervalToReport or 60
-        local minimum_report_changes = device.preferences.minimumReportChanges or 20
-        if current_time - prev_reported_time > mininum_report_interval or math.abs( prev_reported_value - co2) > minimum_report_changes then
+        local max_report_interval = device.preferences.timeIntervalToReport or 300
+        local min_report_changes = device.preferences.minimumReportChanges or 20
+        local min_report_interval = device.preferences.minimumReportInterval or 10
+
+        if (current_time - prev_reported_time > max_report_interval) or
+            (math.abs(prev_reported_value - co2) >= min_report_changes and current_time - prev_reported_time >= min_report_interval) then
             device:emit_event(capabilities.carbonDioxideMeasurement.carbonDioxide(co2))
             device:set_field(PREV_REPORTED_TIME, current_time)
         end
