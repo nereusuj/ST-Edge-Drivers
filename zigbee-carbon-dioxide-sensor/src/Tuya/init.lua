@@ -42,7 +42,7 @@ local TUAY_AIR_QUALITY_CO2 = 0x02
 --- @param driver Driver The current driver running containing necessary context for execution
 --- @param device ZigbeeDevice The device this message was received from containing identifying information
 --- @param zb_rx ZigbeeMessageRx the Zigbee message received
-local tuya_data_report_handler = function(driver, device, zb_rx)
+local function tuya_data_report_handler(driver, device, zb_rx)
     -- log.debug("tuya_data_report_handler called")
     -- log.debug("zb_rx.body.zcl_body.body_bytes: " .. zb_rx.body.zcl_body.body_bytes)
     local body_bytes = zb_rx.body.zcl_body.body_bytes
@@ -58,9 +58,9 @@ local tuya_data_report_handler = function(driver, device, zb_rx)
             capabilities.carbonDioxideMeasurement.carbonDioxide.NAME,
             0
         )
-        local max_report_interval = device.preferences.timeIntervalToReport or 300
-        local min_report_changes = device.preferences.minimumReportChanges or 20
-        local min_report_interval = device.preferences.minimumReportInterval or 10
+        local min_report_interval = device.preferences.minimumReportInterval or 60
+        local max_report_interval = device.preferences.maximumReportInterval or 1200
+        local min_report_changes = device.preferences.minimumReportChanges or 10
 
         if (current_time - prev_reported_time > max_report_interval) or
             (math.abs(prev_reported_value - co2) >= min_report_changes and current_time - prev_reported_time >= min_report_interval) then

@@ -9,30 +9,30 @@ components:
   categories:
   - name: AirQualityDetector
 preferences:
-  - name: "timeIntervalToReport"
+  - name: "maximumReportInterval"
     title: "Max Reporting Interval (Seconds)"
-    description: "Maximum time in seconds to wait before reporting the value, even if it hasn't changed. (Default: 300)"
+    description: "Maximum time in seconds to wait before reporting the value, even if it hasn't changed. (Default: 1200)"
     required: false
     preferenceType: integer
     definition:
-      minimum: 0
+      minimum: 1
       maximum: 3600
-      default: 300
-  - name: "minimumReportChanges"
-    title: "Reportable Change Threshold"
-    description: "Minimum change in value required to trigger a report when the Min Reporting Interval has passed. (Default: 20)"
-    required: false
-    preferenceType: integer
-    definition:
-      minimum: 0
-      maximum: 100
-      default: 20
+      default: 1200
   - name: "minimumReportInterval"
     title: "Min Reporting Interval (Seconds)"
-    description: "Minimum time in seconds that must pass between reports, even if the value changes significantly. (Default: 10)"
+    description: "Minimum time in seconds that must pass between reports, even if the value changes significantly. (Default: 60)"
     required: false
     preferenceType: integer
     definition:
-      minimum: 0
+      minimum: 1
       maximum: 3600
+      default: 60
+  - name: "minimumReportChanges"
+    title: "Reportable Change Threshold (ppm)"
+    description: "Minimum change in value required to trigger a report when the Min Reporting Interval has passed. (Default: 10)"
+    required: false
+    preferenceType: integer
+    definition:
+      minimum: 1
+      maximum: 100
       default: 10

@@ -9,7 +9,7 @@ local zigbee_carbon_dioxide_driver_template = {
         capabilities.carbonDioxideMeasurement,
     },
     ias_zone_configuration_method = constants.IAS_ZONE_CONFIGURE_TYPE.AUTO_ENROLL_RESPONSE,
-    sub_drivers = { require("Tuya") },
+    sub_drivers = { require("Tuya"), require("SlackyDIY") },
     health_check = false
 }
 
